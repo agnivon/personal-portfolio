@@ -8,12 +8,13 @@ const project = {
   type: "document",
   icon: BiPackage,
   fields: [
-    {
+    defineField({
       name: "name",
       title: "Name",
       type: "string",
       description: "Enter the name of the project",
-    },
+      validation: (rule) => rule.max(40).required(),
+    }),
     defineField({
       name: "tagline",
       title: "Tagline",
@@ -76,6 +77,7 @@ const project = {
           ],
         },
       ],
+      initialValue: [],
     },
     {
       name: "description",
@@ -83,6 +85,7 @@ const project = {
       type: "array",
       description: "Write a full description about this project",
       of: [{ type: "block" }],
+      initialValue: [],
     },
   ],
 };

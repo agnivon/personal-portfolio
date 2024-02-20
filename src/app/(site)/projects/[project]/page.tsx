@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${project.name} | Project`,
     description: project.tagline,
     openGraph: {
-      images: project.screenshots.map((sc) => sc.image),
+      images: project.screenshots?.map((sc) => sc.image),
       title: project.name,
       description: project.tagline,
     },
@@ -51,7 +51,7 @@ export default async function Project({ params }: Props) {
 
           <div className="mt-2.5 flex items-center gap-4">
             <a
-              href={project.projectUrl}
+              href={project.projectUrl || ""}
               rel="noreferrer noopener"
               target="_blank"
               className="bg-[#1d1d20] text-white hover:border-zinc-700 border border-transparent rounded-md px-4 py-2 flex items-center"
@@ -73,33 +73,35 @@ export default async function Project({ params }: Props) {
           </div>
         </div>
 
-        {/* <Image
-          className="rounded-xl border border-zinc-800"
-          width={900}
-          height={460}
-          src={project.coverImage?.image || fallBackImage}
-          alt={project.coverImage?.alt || project.name}
-        /> */}
-
-        <Carousel className="text-foreground">
-          <CarouselContent>
-            {project.screenshots.map((sc) => {
-              return (
-                <CarouselItem key={sc.alt}>
-                  <Image
-                    className="rounded-xl border border-zinc-800"
-                    width={900}
-                    height={460}
-                    src={sc.image || fallBackImage}
-                    alt={sc.alt || project.name}
-                  />
-                </CarouselItem>
-              );
-            })}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+        {project.screenshots && project.screenshots.length > 0 ? (
+          <Carousel className="text-foreground">
+            <CarouselContent>
+              {project.screenshots?.map((sc) => {
+                return (
+                  <CarouselItem key={sc.alt}>
+                    <Image
+                      className="rounded-xl border border-zinc-800"
+                      width={900}
+                      height={460}
+                      src={sc.image || fallBackImage}
+                      alt={sc.alt || project.name}
+                    />
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        ) : (
+          <Image
+            className="rounded-xl border border-zinc-800"
+            width={900}
+            height={460}
+            src={project.coverImage?.image || fallBackImage}
+            alt={project.coverImage?.alt || project.name}
+          />
+        )}
 
         <div className="flex flex-col gap-y-6 mt-8 leading-7 text-zinc-400">
           <PortableText value={project.description} />

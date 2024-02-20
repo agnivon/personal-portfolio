@@ -29,10 +29,10 @@ export default async function Project({
             className="flex items-center gap-x-4"
           >
             <Image
-              src={project.logo}
+              src={project.logo || ""}
               width={60}
               height={60}
-              alt={project.name}
+              alt={project.name || "Project Logo"}
               className="bg-zinc-800 rounded-md p-2"
             />
             <div>

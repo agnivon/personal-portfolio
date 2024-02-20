@@ -40,10 +40,10 @@ export type ProjectType = {
   name: string;
   slug: string;
   tagline: string;
-  projectUrl: string;
-  githubUrl: string;
-  logo: string;
-  coverImage: ImageType;
-  screenshots: ImageType[];
+  projectUrl: string | null;
+  githubUrl: string | null;
+  logo: string | null;
+  coverImage: ImageType | null;
+  screenshots: ImageType[] | null;
   description: PortableTextBlock[];
 };
