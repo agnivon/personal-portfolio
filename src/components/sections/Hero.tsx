@@ -30,13 +30,13 @@ export default async function Hero({ profile }: { profile: ProfileType[] }) {
             </p>
             <MotionUl
               className="flex items-center gap-x-6 my-10"
-              variants={Variant.FADE_SLIDE_UP}
+              variants={Variant.FADE}
             >
               {Object.entries(data.socialLinks)
                 .sort()
                 .filter(([_, value]) => Boolean(value))
                 .map(([key, value], id) => (
-                  <MotionLi key={id} variants={Variant.FADE_SLIDE_UP}>
+                  <MotionLi key={id} variants={Variant.FADE}>
                     <a
                       href={value}
                       rel="noreferer noopener"

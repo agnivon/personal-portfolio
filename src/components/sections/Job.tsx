@@ -1,8 +1,7 @@
-import Image from "next/image";
-import { getJob } from "@/sanity/sanity.query";
-import type { JobType } from "@/types";
-import MotionDiv from "../framer/MotionDiv";
 import { Variant } from "@/constants/framer.constants";
+import type { JobType } from "@/types";
+import Image from "next/image";
+import MotionDiv from "../framer/MotionDiv";
 import MotionSection from "../framer/MotionSection";
 
 export default async function Job({ job }: { job: JobType[] }) {

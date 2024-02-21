@@ -32,7 +32,7 @@ export default function OtherProfiles({
               target="blank"
               rel="noreferrer noopener"
               className="min-h-[60px] min-w-[60px] rounded-md overflow-clip relative"
-              variants={Variant.FADE_SLIDE_UP}
+              variants={Variant.FADE}
             >
               <Image
                 src={link.logo.image}

@@ -20,7 +20,7 @@ export const Variant = {
       y: 0,
       transition: {
         when: "beforeChildren",
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
     hidden: {
@@ -37,7 +37,7 @@ export const Variant = {
       x: 0,
       transition: {
         when: "beforeChildren",
-        staggerChildren: 0.3,
+        staggerChildren: 0.1,
       },
     },
     hidden: {
