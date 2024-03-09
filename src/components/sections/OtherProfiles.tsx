@@ -1,9 +1,11 @@
+import { Variant } from "@/constants/framer.constants";
 import { ProfileType } from "@/types";
 import Image from "next/image";
-import MotionDiv from "../framer/MotionDiv";
-import { Variant } from "@/constants/framer.constants";
+import TypeAnimation from "../TypeAnimation";
 import MotionA from "../framer/MotionA";
-import MotionSection from "../framer/MotionSection";
+import MotionDiv from "../framer/MotionDiv";
+
+const Placeholder = () => <span className="invisible">P</span>;
 
 export default function OtherProfiles({
   otherProfileLinks,
@@ -11,18 +13,23 @@ export default function OtherProfiles({
   otherProfileLinks: ProfileType["otherProfileLinks"];
 }) {
   return (
-    <MotionSection
-      className="mt-32"
-      initial="hidden"
-      animate="visible"
-      variants={Variant.FADE}
-    >
+    <section className="mt-32" id="other-profiles">
       <div className="mb-16">
-        <h2 className="font-semibold text-4xl mb-4">Other Profiles</h2>
+        <h2 className="font-semibold text-4xl mb-4">
+          <TypeAnimation
+            sequence={["Other Profiles"]}
+            wrapper="span"
+            cursor={false}
+            speed={40}
+          />
+          <Placeholder />
+        </h2>
       </div>
       <MotionDiv
         className="grid grid-cols-4 sm:max-md:grid-cols-5 place-items-center lg:gap-8 gap-6 max-w-2xl"
         variants={Variant.FADE}
+        initial="hidden"
+        animate="visible"
       >
         {otherProfileLinks.map((link) => {
           return (
@@ -44,6 +51,6 @@ export default function OtherProfiles({
           );
         })}
       </MotionDiv>
-    </MotionSection>
+    </section>
   );
 }

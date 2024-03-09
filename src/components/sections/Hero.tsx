@@ -1,11 +1,10 @@
-import { getProfile } from "@/sanity/sanity.query";
-import { ProfileType } from "@/types";
-import HeroSvg from "../icons/HeroSvg";
-import MotionDiv from "../framer/MotionDiv";
-import MotionLi from "../framer/MotionLi";
 import { Variant } from "@/constants/framer.constants";
-import MotionUl from "../framer/MotionUl";
+import { ProfileType } from "@/types";
+import TypeAnimation from "../TypeAnimation";
+import MotionLi from "../framer/MotionLi";
 import MotionSection from "../framer/MotionSection";
+import MotionUl from "../framer/MotionUl";
+import HeroSvg from "../icons/HeroSvg";
 
 export default async function Hero({ profile }: { profile: ProfileType[] }) {
   return (
@@ -17,13 +16,15 @@ export default async function Hero({ profile }: { profile: ProfileType[] }) {
     >
       {profile &&
         profile.map((data) => (
-          <MotionDiv
-            key={data._id}
-            className="lg:max-w-2xl max-w-2xl"
-            variants={Variant.FADE}
-          >
-            <h1 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 lg:leading-[3.7rem] leading-tight lg:min-w-[700px] min-w-full">
-              {data.headline}
+          <div key={data._id} className="lg:max-w-2xl max-w-2xl">
+            <h1 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 lg:leading-[3.7rem] leading-tight lg:min-w-[700px] min-w-full h-28">
+              <TypeAnimation
+                sequence={[data.headline]}
+                wrapper="span"
+                cursor={false}
+                speed={40}
+                //repeat={Infinity}
+              />
             </h1>
             <p className="text-base text-zinc-400 leading-relaxed">
               {data.shortBio}
@@ -47,7 +48,7 @@ export default async function Hero({ profile }: { profile: ProfileType[] }) {
                   </MotionLi>
                 ))}
             </MotionUl>
-          </MotionDiv>
+          </div>
         ))}
       <HeroSvg />
     </MotionSection>

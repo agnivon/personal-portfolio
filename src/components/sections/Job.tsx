@@ -1,27 +1,27 @@
-import { Variant } from "@/constants/framer.constants";
 import type { JobType } from "@/types";
 import Image from "next/image";
-import MotionDiv from "../framer/MotionDiv";
-import MotionSection from "../framer/MotionSection";
+import TypeAnimation from "../TypeAnimation";
+
+const Placeholder = () => <span className="invisible">P</span>;
 
 export default async function Job({ job }: { job: JobType[] }) {
   return (
-    <MotionSection
-      className="mt-32"
-      initial="hidden"
-      animate="visible"
-      variants={Variant.FADE}
-    >
+    <div className="mt-32" id="work-experience">
       <div className="mb-16">
-        <h2 className="font-semibold text-4xl mb-4">Work Experience</h2>
+        <h2 className="font-semibold text-4xl mb-4">
+          <TypeAnimation
+            sequence={["Work Experience"]}
+            wrapper="span"
+            cursor={false}
+            speed={40}
+          />
+          <Placeholder />
+        </h2>
       </div>
 
-      <MotionDiv className="flex flex-col gap-y-12" variants={Variant.FADE}>
+      <div className="flex flex-col gap-y-12">
         {job.map((data) => (
-          <MotionDiv
-            initial="hidden"
-            whileInView="visible"
-            variants={Variant.FADE_SLIDE_LEFT}
+          <div
             key={data._id}
             className="flex items-start lg:gap-x-6 gap-x-4 max-w-2xl relative before:absolute before:bottom-0 before:top-[4.5rem] before:left-7 before:w-[1px] before:h-[calc(100%-50px)] before:bg-zinc-800"
           >
@@ -38,16 +38,40 @@ export default async function Job({ job }: { job: JobType[] }) {
               />
             </a>
             <div className="flex flex-col items-start">
-              <h3 className="text-xl font-bold">{data.name}</h3>
-              <p>{data.jobTitle}</p>
-              <small className="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
-                {data.startDate.toString()} - {data.endDate.toString()}
+              <h3 className="text-xl font-bold">
+                <TypeAnimation
+                  sequence={[data.name]}
+                  wrapper="span"
+                  cursor={false}
+                  speed={30}
+                />
+                <Placeholder />
+              </h3>
+              <p>
+                <TypeAnimation
+                  sequence={[data.jobTitle]}
+                  wrapper="span"
+                  cursor={false}
+                  speed={30}
+                />
+                <Placeholder />
+              </p>
+              <small className="text-sm text-zinc-500 mt-2 tracking-widest uppercase inline-block">
+                <TypeAnimation
+                  sequence={[
+                    `${data.startDate.toString()} - ${data.endDate.toString()}`,
+                  ]}
+                  wrapper="span"
+                  cursor={false}
+                  speed={30}
+                />
+                <Placeholder />
               </small>
               <p className="text-base text-zinc-400 my-4">{data.description}</p>
             </div>
-          </MotionDiv>
+          </div>
         ))}
-      </MotionDiv>
-    </MotionSection>
+      </div>
+    </div>
   );
 }

@@ -72,7 +72,12 @@ export default async function AboutPage() {
               </div>
             </MotionSection>
 
-            <MotionSection className="mt-24 max-w-2xl" variants={Variant.FADE}>
+            <MotionSection
+              className="mt-24 max-w-2xl"
+              variants={Variant.FADE}
+              initial="hidden"
+              whileInView={"visible"}
+            >
               <h2 className="font-semibold text-4xl mb-4">Expertise</h2>
               <p className="text-zinc-400 max-w-lg">
                 I&apos;ve spent few years working on my skills. In no particular
@@ -81,18 +86,15 @@ export default async function AboutPage() {
 
               <MotionUl
                 className="flex flex-wrap items-center gap-3 mt-8"
-                initial="hidden"
-                whileInView={"visible"}
                 variants={Variant.FADE}
               >
                 {data.skills.map((skill, id) => (
-                  <MotionLi
+                  <li
                     key={id}
-                    variants={Variant.FADE_SLIDE_UP}
                     className="bg-[#1d1d20] border border-transparent hover:border-zinc-700 rounded-md px-2 py-1"
                   >
                     {skill}
-                  </MotionLi>
+                  </li>
                 ))}
               </MotionUl>
             </MotionSection>
